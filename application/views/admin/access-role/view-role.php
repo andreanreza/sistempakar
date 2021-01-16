@@ -35,8 +35,9 @@
                                       <th scope="row"><?= $no++; ?></th>
                                       <td><?= $r['role']; ?></td>
                                       <td>
-                                          <a href="" class="text-success" data-toggle="modal" data-target="#editMenu<?= $r['id']; ?>"><i class="fas fa-edit"></i></a>
-                                          <a href="<?= base_url('admin/menu/hapusmenuutama/') . $r['id']; ?>" class="text-danger" onclick="return confirm('yakin menghapus ?');"><i class="fas fa-trash-alt ml-2"></i></a>
+                                          <a href="" class="text-warning" data-toggle="modal" data-target="#accessRole<?= $r['id']; ?>"><i class="fas fa-user-cog"></i></a>
+                                          <a href="" class="text-success" data-toggle="modal" data-target="#editRole<?= $r['id']; ?>"><i class="fas fa-edit ml-2"></i></a>
+                                          <a href="<?= base_url('admin/menu/hapusrole/') . $r['id']; ?>" class="text-danger" onclick="return confirm('yakin menghapus ?');"><i class="fas fa-trash-alt ml-2"></i></a>
                                       </td>
                                   </tr>
                               <?php endforeach; ?>
@@ -53,7 +54,7 @@
       <div class="modal-dialog" role="document">
           <div class="modal-content">
               <div class="modal-header">
-                  <h5 class="modal-title" id="addRoleLabel"><?= $judul; ?></h5>
+                  <h5 class="modal-title" id="addRoleLabel">Add Role</h5>
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                   </button>
@@ -79,21 +80,21 @@
   <?php
     $no = 1;
     foreach ($role as $r) : $no++; ?>
-      <div class="modal fade" id="editMenu<?= $r['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="editMenuLabel" aria-hidden="true">
+      <div class="modal fade" id="editRole<?= $r['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="editRoleLabel" aria-hidden="true">
           <div class="modal-dialog" role="document">
               <div class="modal-content">
                   <div class="modal-header">
-                      <h5 class="modal-title" id="editMenuLabel"><?= $judul; ?></h5>
+                      <h5 class="modal-title" id="editRoleLabel">Edit Role</h5>
                       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                           <span aria-hidden="true">&times;</span>
                       </button>
                   </div>
-                  <form method="post" action="<?= base_url('admin/menu/editMenu/') . $r['id']; ?>">
+                  <form method="post" action="<?= base_url('admin/menu/editrole/') . $r['id']; ?>">
                       <div class="modal-body">
                           <input type="hidden" name="id" value="<?= $r['id']; ?>">
                           <div class="form-group">
-                              <label for="menu">Role</label>
-                              <input type="text" class="form-control" id="menu" name="menu" value="<?= $r['role']; ?>">
+                              <label for="role">Role</label>
+                              <input type="text" class="form-control" id="role" name="role" value="<?= $r['role']; ?>">
                           </div>
                       </div>
                       <div class="modal-footer">
@@ -106,3 +107,59 @@
       </div>
   <?php endforeach; ?>
   <!-- end modal edit -->
+
+  <!-- access role menu -->
+  <?php
+    $no = 1;
+    foreach ($role as $r) : $no++; ?>
+      <div class="modal fade" id="accessRole<?= $r['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="accessRoleLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                  <div class="modal-header">
+                      <h5 class="modal-title" id="accessRoleLabel"><?= $r['role']; ?></h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                      </button>
+                  </div>
+
+                  <!-- <div class="modal-body"> -->
+                  <div class="container">
+                      <div class="card-block table-border-style">
+                          <div class="table-responsive">
+                              <table class="table">
+                                  <thead>
+                                      <tr>
+                                          <th>No</th>
+                                          <th>Menu</th>
+                                          <th>Access</th>
+                                      </tr>
+                                  </thead>
+                                  <tbody>
+                                      <?php
+                                        $no = 1;
+                                        foreach ($menu as $m) : ?>
+                                          <tr>
+                                              <th scope="row"><?= $no++; ?></th>
+                                              <td><?= $m['menu']; ?></td>
+                                              <td>
+                                                  <div class="form-check ml-4">
+                                                      <input class="form-check-input" type="checkbox" <?= check_access($r['id'], $m['id']); ?> data-role="<?= $r['id']; ?>" data-menu="<?= $m['id']; ?>">
+                                                  </div>
+                                              </td>
+                                          </tr>
+                                      <?php endforeach; ?>
+                                  </tbody>
+                              </table>
+                          </div>
+                      </div>
+                  </div>
+                  <!-- </div> -->
+                  <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                      <!-- <button type="submit" class="btn btn-primary">Save changes</button> -->
+                  </div>
+
+              </div>
+          </div>
+      </div>
+  <?php endforeach; ?>

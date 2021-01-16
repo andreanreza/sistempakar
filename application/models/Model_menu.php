@@ -86,4 +86,20 @@ class Model_menu extends CI_Model
         $this->db->where('id', $this->input->post('id'));
         $this->db->update('tb_submenu', $data);
     }
+
+    public function editRole()
+    {
+        $data = [
+            'role' => $this->input->post('role')
+        ];
+
+        $this->db->where('id', $this->input->post('id'));
+        $this->db->update('tb_role', $data);
+    }
+
+    public function roleMenu()
+    {
+        $this->db->where('id !=', 1);
+        return $this->db->get('tb_menu')->result_array();
+    }
 }

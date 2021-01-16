@@ -33,6 +33,25 @@
         }
     });
 </script>
+
+<script>
+    $('.form-check-input').on('click', function() {
+        const id_menu = $(this).data('menu');
+        const id_role = $(this).data('role');
+
+        $.ajax({
+            url: "<?= base_url('admin/menu/gantiaccess'); ?>",
+            type: 'post',
+            data: {
+                id_menu: id_menu,
+                id_role: id_role
+            },
+            success: function() {
+                document.location.href = "<?= base_url('admin/menu/role/'); ?>" + id_role;
+            }
+        });
+    });
+</script>
 </body>
 
 </html>

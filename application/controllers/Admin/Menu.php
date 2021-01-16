@@ -9,7 +9,7 @@ class Menu extends CI_Controller
         cek_login();
     }
 
-    // Menu utama crud
+    // Menu utama controler
     public function menuUtama()
     {
         $data = [
@@ -58,7 +58,7 @@ class Menu extends CI_Controller
     }
     // end menu utama
 
-    // menu list crud
+    // menu controler
     public function menuList()
     {
         $data = [
@@ -108,6 +108,7 @@ class Menu extends CI_Controller
     }
     // end menu list
 
+    // submenu controler
     public function submenu()
     {
         $data = [
@@ -153,13 +154,16 @@ class Menu extends CI_Controller
          </div>');
         redirect('admin/menu/submenu');
     }
+    // end submenu
 
+    // role access controler
     public function role()
     {
         $data = [
-            'judul'         => 'Role',
+            'judul'         => 'Access Menu',
             'user'          => $this->Model_auth->dataLogin(),
             'role'          => $this->db->get('tb_role')->result_array(),
+            'menu'          => $this->Model_menu->roleMenu()
 
         ];
 
@@ -179,4 +183,49 @@ class Menu extends CI_Controller
             redirect('admin/menu/role');
         }
     }
+
+    public function editRole($id)
+    {
+        $this->Model_menu->editRole($id);
+        $this->session->set_flashdata('pesan', '<div class="alert alert-warning" role="alert">
+        successfully edited data
+       </div>');
+        redirect('admin/menu/role');
+    }
+
+
+    public function hapusRole($id)
+    {
+        $this->db->where('id', $id);
+        $this->db->delete('tb_role');
+
+        $this->session->set_flashdata('pesan', '<div class="alert alert-danger" role="alert">
+        successfully deleted data
+         </div>');
+        redirect('admin/menu/role');
+    }
+
+    public function gantiaccess()
+    {
+        $id_menu = $this->input->post('id_menu');
+        $id_role = $this->input->post('id_role');
+
+        $data = [
+            'id_role' => $id_role,
+            'id_menu'   => $id_menu
+        ];
+
+        $result = $this->db->get_where('tb_access_menu', $data);
+
+        if ($result->num_rows() < 1) {
+            $this->db->insert('tb_access_menu', $data);
+        } else {
+            $this->db->delete('tb_access_menu', $data);
+        }
+
+        $this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">
+        Access change
+         </div>');
+    }
+    // end role access
 }
