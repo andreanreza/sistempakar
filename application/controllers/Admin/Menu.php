@@ -224,7 +224,7 @@ class Menu extends CI_Controller
         }
 
         $this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">
-        Access change
+        Access has been replaced
          </div>');
     }
     // end role access

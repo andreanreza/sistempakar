@@ -26,9 +26,9 @@
                                         <div class="page-header-breadcrumb">
                                             <ul class="breadcrumb-title">
                                                 <li class="breadcrumb-item">
-                                                    <a href="">
+                                                    <!-- <a href="">
                                                         <i class="icofont icofont-home ml-auto">home</i>
-                                                    </a>
+                                                    </a> -->
                                                 </li>
                                             </ul>
                                         </div>
@@ -60,7 +60,7 @@
                         <tr>
                             <td>
                                 <div class="task-contain">
-                                    <img src="<?= base_url('assets/img/') . $user['image']; ?>" data-toggle="tooltip" title="<?= $user['username']; ?>" class="img-40" alt="">
+                                    <img src="<?= base_url('assets/img/username.jpg'); ?>" data-toggle="tooltip" title="<?= $user['username']; ?>" class="img-40" alt="">
                                     <p class="d-inline-block m-l-20"><?= $user['username']; ?></p>
 
                                 </div>

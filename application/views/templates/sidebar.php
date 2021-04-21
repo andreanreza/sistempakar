@@ -5,7 +5,10 @@
             <div class="pcoded-inner-navbar main-menu">
                 <div class="">
                     <div class="main-menu-header">
-                        <img class="img-40 img-radius" src="<?= base_url('assets/img/') . $user['image']; ?>" alt="User-Profile-Image">
+                        <a href="">
+                            <img class="img-40 img-radius" src="<?= base_url('assets/img/') . $user['image']; ?>" alt="User-Profile-Image">
+                        </a>
+
                         <div class="user-details">
                             <span><?= $user['username']; ?></span>
                             <span id="more-details"><?= $user['role']; ?><i class="ti-angle-down"></i></span>
@@ -15,8 +18,9 @@
                     <div class="main-menu-content">
                         <ul>
                             <li class="more-details">
-                                <a href="<?= base_url('profile'); ?>"><i class="ti-user"></i>View Profile</a>
-                                <a href="#!"><i class="ti-settings"></i>Settings</a>
+                                <a href="" data-toggle="modal" data-target="#viewProfile"><i class="ti-user"></i>View Profile</a>
+                                <a href="" data-toggle="modal" data-target="#setting"><i class="ti-settings"></i>Settings</a>
+                                <a href="" data-toggle="modal" data-target="#gantiPassword"><i class="ti-unlock"></i>Change Password</a>
                                 <a href="<?= base_url('auth/logout'); ?>"><i class="ti-layout-sidebar-left"></i>Logout</a>
                             </li>
                         </ul>
@@ -44,7 +48,9 @@
                 ?>
 
                 <?php foreach ($menu as $m) : ?>
+
                     <div class="pcoded-navigatio-lavel" data-i18n="nav.category.navigation"><?= $m['menu']; ?></div>
+
 
                     <!-- query menu list -->
                     <?php
@@ -112,6 +118,175 @@
                     </ul>
             </div>
         </nav>
+
+        <!-- setting -->
+        <div class="modal fade" id="gantiPassword" tabindex="-1" role="dialog" aria-labelledby="gantiPasswordLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="gantiPasswordLabel">Change Password</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <?php echo form_open_multipart('profile/edit'); ?>
+                        <div class="form-group row">
+                            <div class="col-sm-12">
+                                <input type="password" class="form-control" name="passwordLama" id="passwordLama" placeholder="input old password">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-12">
+                                <input type="password" class="form-control" name="passwordBaru" id="passwordBaru" placeholder="input new password">
+                            </div>
+                        </div>
+
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Save changes</button>
+                        </div>
+                        <?php echo form_close(); ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- setting -->
+        <div class="modal fade" id="setting" tabindex="-1" role="dialog" aria-labelledby="settingLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="settingLabel">Setting</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <?php echo form_open_multipart('profile/edit'); ?>
+                        <div class="form-group row">
+                            <label for="email" class="col-sm-2 col-form-label">Email</label>
+                            <div class="col-sm-10">
+                                <input type="email" class="form-control" name="email" id="email" value="<?= $user['email']; ?>" readonly>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="username" class="col-sm-2 col-form-label">Username</label>
+                            <div class="col-sm-10">
+                                <input type="username" class="form-control" id="username" name="username" value="<?= $user['username']; ?>">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="image" class="col-sm-2 col-form-label">Image</label>
+                            <div class="col-sm-10">
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <img src="<?= base_url('assets/img/') . $user['image']; ?>" class="img-thumbnail">
+                                    </div>
+                                    <div class="col-sm-9">
+                                        <div class="custom-file">
+                                            <input type="file" class="custom-file-input" id="image" name="image">
+                                            <label class="custom-file-label" for="image">Choose file</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Save changes</button>
+                        </div>
+                        <?php echo form_close(); ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- modal view profile -->
+        <div class="modal fade" id="viewProfile" tabindex="-1" role="dialog" aria-labelledby="viewProfileLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="viewProfileLabel">Your Profile</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+
+                    <div class="modal-body">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <div class="task-contain">
+                                            <?php if ($user['id_role'] == '1') : ?>
+                                                <img src="<?= base_url('assets/img/admin.jpg'); ?>" data-toggle="tooltip" title="<?= $user['username']; ?>" class="img-40" alt="">
+                                            <?php else : ?>
+                                                <img src="<?= base_url('assets/img/manager.jpg'); ?>" data-toggle="tooltip" title="<?= $user['username']; ?>" class="img-40" alt="">
+                                            <?php endif; ?>
+                                            <p class="d-inline-block m-l-20"><?= $user['role']; ?></p><br>
+                                        </div>
+                                    </td>
+                                    <td>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="task-contain">
+                                            <img src="<?= base_url('assets/img/username.jpg'); ?>" data-toggle="tooltip" title="<?= $user['username']; ?>" class="img-40" alt="">
+                                            <p class="d-inline-block m-l-20"><?= $user['username']; ?></p>
+
+                                        </div>
+                                    </td>
+                                    <td>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="task-contain">
+                                            <img src="<?= base_url('assets/img/email.png'); ?>" data-toggle="tooltip" title="<?= $user['email']; ?>" class="img-40" alt="">
+                                            <p class="d-inline-block m-l-20"><?= $user['email']; ?></p>
+                                        </div>
+                                    </td>
+                                    <td>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="task-contain">
+                                            <img src="<?= base_url('assets/img/tanggal.png'); ?>" data-toggle="tooltip" title="<?= date('d F Y', $user['date_created']); ?>" class="img-40" alt="">
+                                            <p class="d-inline-block m-l-20"><?= date('d F Y', $user['date_created']); ?></p>
+                                        </div>
+                                    </td>
+                                    <td>
+
+                                    </td>
+                                </tr>
+                        </table>
+                        <!-- </div>
+                                    </div>
+                                </div>
+                            </div> -->
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
 
 
         <div class="pcoded-content">

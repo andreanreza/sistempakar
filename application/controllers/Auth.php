@@ -5,6 +5,10 @@ class Auth extends CI_Controller
 {
     public function index()
     {
+        // cek yg sedang login
+
+
+
         $data = [
             'judul'         => 'Login Page'
         ];
@@ -161,6 +165,6 @@ class Auth extends CI_Controller
 
     public function blok()
     {
-        echo "blok";
+        redirect('notifikasi');
     }
 }

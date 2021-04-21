@@ -86,11 +86,11 @@
                                           <i class="ti-settings"></i> Settings
                                       </a>
                                   </li> -->
-                                  <li>
+                                  <!-- <li>
                                       <a href="<?= base_url('profile'); ?>">
                                           <i class="ti-user"></i> Profile
                                       </a>
-                                  </li>
+                                  </li> -->
                                   <li>
                                       <a href="<?= base_url('auth/logout'); ?>">
                                           <i class="ti-layout-sidebar-left"></i> Logout
