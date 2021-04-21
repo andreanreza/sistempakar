@@ -13,7 +13,7 @@ class Rules extends CI_Controller
     {
 
         $data = [
-            'judul'         => 'Data Gejala',
+            'judul'         => 'Rules',
             'user'          => $this->Model_auth->dataLogin(),
             'rules'         => $this->Model_master->viewRules(),
             'penyakit'      => $this->db->get('tb_penyakit')->result(),
