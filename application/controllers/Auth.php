@@ -65,7 +65,7 @@ class Auth extends CI_Controller
                             redirect('admin/admin');
                             break;
                         case '2':
-                            redirect('user');
+                            redirect('user/user');
                             break;
                         default:
                             $this->session->set_flashdata('pesan', '<div class="alert alert-danger" role="alert">

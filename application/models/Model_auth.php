@@ -10,7 +10,7 @@ class Model_auth extends CI_Model
             'email'             => $this->input->post('email'),
             'password'          => password_hash($this->input->post('password'), PASSWORD_DEFAULT),
             'image'             => 'default.jpg',
-            'id_role'           => $this->input->post('id_role'),
+            'id_role'           => 2,
             'date_created'      => time(),
             'is_active'         => 1
         ];
