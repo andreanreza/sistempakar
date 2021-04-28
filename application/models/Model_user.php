@@ -16,7 +16,7 @@ class Model_user extends CI_Model
             $data = [
                 'id_user' => $id_user,
                 'id_gejala' => $idg,
-                'id_penyakit' => 2
+                'id_penyakit' => 3
             ];
             $this->db->insert('tb_hasil', $data);
         }
